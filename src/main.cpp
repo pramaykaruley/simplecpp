@@ -1,6 +1,11 @@
-#include <simplecpp>
+#include <simplecppmainwindow.h>
 
-main_program{
-  initCanvas();
-  wait(1);
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    SimpleCppMainWindow w;
+    w.show();
+    return a.exec();
 }
