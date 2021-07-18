@@ -1,14 +1,12 @@
 #ifndef _SPRITE_INCLUDED_
 #define _SPRITE_INCLUDED_
 
+#include <canvas.h>
 #include <spriteInterface.h>
-#include <common_def.h>
-#include <pose.h>
+#include <iostream>
+#include <commondefs.h>
 
 namespace simplecpp{
-	
-	
-class Composite;
 
 class Sprite : public virtual SpriteInterface{
  protected:
@@ -48,7 +46,7 @@ class Sprite : public virtual SpriteInterface{
   }
   virtual double getScale() const { return pose.getScale(); }
 
-  virtual void paint(Pose *p=NULL){};
+  virtual void paint(Pose *p=nullptr){};
   virtual void show();
   virtual void hide();
   virtual void rotate(double angle);
@@ -58,7 +56,7 @@ class Sprite : public virtual SpriteInterface{
   virtual void scale(double factor, bool repaintP=true);
   virtual void move(double xshift, double yshift, bool repaintP=true);
   virtual void moveTo(double x, double y, bool repaintP=true);
-  virtual void print(string msg=""){cout << msg  << " Undefined.\n";}
+  virtual void print(std::string msg=""){std::cout << msg  << " Undefined.\n";}
   Sprite &setColor(Color c, bool repaintP=true);
   void setFill(bool v=true, bool repaintP=true);
   virtual void imprint(bool repaintP=true);

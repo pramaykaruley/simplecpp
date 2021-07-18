@@ -1,4 +1,6 @@
-#include <simplecpp>
+#include <canvas.h>
+#include <polygon.h>
+#include <commondefs.h>
 
 namespace simplecpp{
 Polygon::Polygon(Composite* owner): Sprite(0,0,owner) {
@@ -29,12 +31,15 @@ void Polygon::init(const double x, const double y,
 
 void Polygon::paint(Pose *p){
   if(visible && vertex.size()>0){
-    XPoint xpt_vertex[vertex.size()];
+    XPoint xpt_vertex[10];//[vertex.size()];
     if(p){
-      Pose r = Pose(*p,pose);
-      r.compute_res_vertex(xpt_vertex, vertex, vertex.size());
+        Pose r = Pose(*p,pose);
+        r.compute_res_vertex(xpt_vertex, vertex, vertex.size());
     }
-    else pose.compute_res_vertex(xpt_vertex, vertex, vertex.size());
+    else{
+        pose.compute_res_vertex(xpt_vertex, vertex, vertex.size());
+    }
+
     drawPolygon(xpt_vertex, vertex.size(), color, fill);
   }
 }

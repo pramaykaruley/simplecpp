@@ -1,4 +1,5 @@
-#include <simplecpp>
+#include <canvas.h>
+#include <line.h>
 
 namespace simplecpp{
 void Line::init(double x1, double y1, double x2, double y2){

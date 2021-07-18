@@ -1,4 +1,6 @@
-#include <simplecpp>		
+#include <sprite.h>
+#include <composite.h>
+#include <line.h>
 
 namespace simplecpp{
 
@@ -39,7 +41,7 @@ Sprite::Sprite(const Sprite& other):
 
 void Sprite::init(Composite* owner){
   visible = true;
-  color = COLOR("black");
+  color = Color("black");
   fill = false;
   penIsDown = false;
   z_index = ++ max_z_index;

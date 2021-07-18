@@ -1,13 +1,13 @@
 #ifndef _SPRITEINTERFACE_INCLUDED_
 #define _SPRITEINTERFACE_INCLUDED_
 
-#include <common_def.h>
-#include <pose.h>
+#include <string>
+#include <commondefs.h>
 
 namespace simplecpp{
 
 class Composite;
-class Sprite; 
+class Sprite;
 
 class SpriteInterface{
  public:
@@ -20,7 +20,6 @@ class SpriteInterface{
   virtual void left(double Dangle)=0;
   virtual void right(double Dangle)=0;
 
-
   virtual void paint(Pose *p=NULL)=0;
   virtual void show()=0;
   virtual void hide()=0;
@@ -31,7 +30,7 @@ class SpriteInterface{
   virtual void scale(double factor, bool repaintP=true)=0;
   virtual void move(double xshift, double yshift, bool repaintP=true)=0;
   virtual void moveTo(double x, double y, bool repaintP=true)=0;
-  virtual void print(string msg="")=0;
+  virtual void print(std::string msg="")=0;
   void setColor(Color c, bool repaintP=true);
   void setFill(bool v=true, bool repaintP=true);
   void imprint(bool repaintP=true);
@@ -41,5 +40,6 @@ class SpriteInterface{
   virtual Position getAtan2() const=0;
   virtual double getOrientation() const=0;
 };
+
 }
 #endif

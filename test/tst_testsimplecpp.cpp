@@ -1,6 +1,7 @@
 #include <QtTest>
-#include <canvas.h>
 #include <simplecppmainwindow.h>
+#include <canvas.h>
+#include <turtleSim.h>
 
 class TestSimpleCpp : public QObject
 {
@@ -16,6 +17,7 @@ private slots:
     void test_closeCanvas();
     void test_drawLine();
     void test_drawLineStress();
+    void test_hilbert();
 };
 
 TestSimpleCpp::TestSimpleCpp()
@@ -28,6 +30,7 @@ TestSimpleCpp::~TestSimpleCpp()
 
 }
 
+// Helper Functions
 void init(std::string testTitle)
 {
     auto windowName {testTitle};
@@ -44,7 +47,23 @@ void cleanup()
     simplecpp::closeCanvas();
 }
 
+void hilbert(float dist, int n, int parity)
+  // moves forward drawing a curve to left if parity = 1, right if -1.
+{
+  simplecpp::left(90*parity);
+  if(n > 0) hilbert(dist,n-1, -parity);
+  simplecpp::forward(dist);
+  simplecpp::right(90*parity);
+  if(n > 0) hilbert(dist,n-1,parity);
+  simplecpp::forward(dist);
+  if(n > 0) hilbert(dist,n-1,parity);
+  simplecpp::right(90*parity);
+  simplecpp::forward(dist);
+  if(n > 0) hilbert(dist,n-1, -parity);
+  simplecpp::left(90*parity);
+}
 
+// Test Methods
 void TestSimpleCpp::test_initCanvas()
 {
     auto windowName {"Test for simplecpp::initCanvas()"};
@@ -126,6 +145,29 @@ void TestSimpleCpp::test_drawLineStress()
     // Termination
     cleanup();
 }
+
+void TestSimpleCpp::test_hilbert()
+{
+    simplecpp::turtleSim();
+
+    simplecpp::penDown(false);
+    simplecpp::forward(-250);
+    simplecpp::left(90);
+    simplecpp::forward(-250);
+    simplecpp::right(90);
+    simplecpp::penDown(true);
+
+    auto order = 8;
+    auto parity = 1;
+    hilbert(2, order, parity);
+
+    simplecpp::appObj->processEvents(); // Process all pending events
+    Sleep(10000);                        // Wait for visual inspection
+
+    simplecpp::closeTurtleSim();
+}
+
+
 
 QTEST_APPLESS_MAIN(TestSimpleCpp)
 

@@ -2,7 +2,6 @@
 #define _LINE_INCLUDED_
 
 #include <sprite.h>
-#include <common_def.h>
 
 namespace simplecpp{
 class Line : public Sprite{

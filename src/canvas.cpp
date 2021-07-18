@@ -1,6 +1,7 @@
-#include <canvas.h>
 #include <simplecppmainwindow.h>
 #include <QApplication>
+#include <sprite.h>
+#include <canvas.h>
 
 namespace simplecpp {
 std::unique_ptr<QApplication> appObj;
@@ -35,10 +36,64 @@ void closeCanvas(){
 
 }
 
-void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth)
-{
+void repaint() {
+    // TODO
+}
+
+int canvas_width(){
+   return winObj->width();
+ }
+
+ int canvas_height(){
+   return winObj->height();
+ }
+
+void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth){
     winObj->drawLine(start, end, lineColor, lineWidth);
 }
 
+void drawPolygon(XPoint *points, int nPoints, Color fillColor,
+                 bool fill, unsigned int lineWidth,
+                 int lineStyle, int capStyle, int joinStyle, int fillRule,
+                 int function){ // TODO: Unsed argument?
+
+}
+
+void beginFrame(){
+//    globalRepaintFlag = false;
+}
+
+void endFrame(){
+//  	globalRepaintFlag = true;
+//    repaint();
+}
+
+void addSprite(Sprite *t){
+    // TODO
+/*
+ *     if(t){
+       spriteSet.insert(t);
+    }
+    */
+}
+
+
+void removeSprite(Sprite *t){
+    // TODO
+    /*
+    if(t){
+      for( iter = spriteSet.begin(); iter != spriteSet.end(); iter ++){
+    if((*iter) == t){spriteSet.erase(iter); break;}
+      }
+    }
+    repaint();
+    */
+}
+
+void c_imprint(Sprite* s){
+    //bindFBO();
+    s->paint();
+    //unbindFBO();
+}
 
 }

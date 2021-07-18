@@ -1,14 +1,16 @@
-#include <simplecpp>
+#include <canvas.h>
+#include <turtle.h>
+#include <turtleSim.h>
+#include <iostream>
 
-Turtle *_PsystemTurtle_;
+simplecpp::Turtle *_PsystemTurtle_;
 
 void check(const char* msg){
   if(!_PsystemTurtle_){
-    cout << "You need to call turtleSim before calling "<<msg<<".\n";
+    std::cout << "You need to call turtleSim before calling "<<msg<<".\n";
     exit(1);
   }
 }
-
 
 namespace simplecpp{
 

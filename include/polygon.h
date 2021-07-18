@@ -8,7 +8,7 @@
 namespace simplecpp{
 class Polygon : public Sprite{
  protected:
-  vector<Position> vertex;
+  std::vector<Position> vertex;
   void init(const double x, const double y, const double points[][2], 
 	     int count, Composite* owner=NULL);
  public:
