@@ -1,4 +1,5 @@
 #include <QtTest>
+#include <QThread>
 #include <simplecppmainwindow.h>
 #include <canvas.h>
 #include <turtleSim.h>
@@ -43,7 +44,7 @@ void init(std::string testTitle)
 void cleanup()
 {
     simplecpp::appObj->processEvents(); // Process all pending events
-    Sleep(4000);                        // Wait for visual inspection
+    QThread::sleep(5);                        // Wait for visual inspection
     simplecpp::closeCanvas();
 }
 
@@ -141,9 +142,9 @@ void TestSimpleCpp::test_drawLineStress()
         simplecpp::drawLine(start, end, simplecpp::Color("darkCyan"), 10);
     }
 
-
     // Termination
     cleanup();
+
 }
 
 void TestSimpleCpp::test_hilbert()
@@ -162,9 +163,10 @@ void TestSimpleCpp::test_hilbert()
     hilbert(2, order, parity);
 
     simplecpp::appObj->processEvents(); // Process all pending events
-    Sleep(10000);                        // Wait for visual inspection
+    QThread::sleep(5);                  // Wait for visual inspection
 
     simplecpp::closeTurtleSim();
+
 }
 
 
