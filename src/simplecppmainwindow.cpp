@@ -67,7 +67,7 @@ void SimpleCppMainWindow::render(QPainter *painter)
     }
 
     //qDebug() << "Render called";
-    //pendingCmd.clear();
+    pendingCmd.clear();
 }
 
 bool SimpleCppMainWindow::event(QEvent *event)

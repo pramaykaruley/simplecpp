@@ -1,5 +1,7 @@
 #include <commondefs.h>
 #include <iostream>
+#include <QThread>
+#include <canvas.h>
 
 namespace simplecpp{
 
@@ -122,9 +124,14 @@ namespace simplecpp{
         //a23 *= r;
       }
 
-      void Pose::print() const{
+      void Pose::print() const {
         std::cout << a11 << ", " << a12 << ", " << a13 <<"  "
                   << a21 << ", " << a22 << ", " << a23 << std::endl;
       }
 
+      // Utilities
+      void wait(int seconds){
+          simplecpp::appObj->processEvents(); // Process all pending events
+          QThread::sleep(seconds);  // Wait for visual inspection
+      }
 }

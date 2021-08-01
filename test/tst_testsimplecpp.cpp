@@ -3,6 +3,7 @@
 #include <simplecppmainwindow.h>
 #include <canvas.h>
 #include <turtleSim.h>
+#include <commondefs.h>
 
 class TestSimpleCpp : public QObject
 {
@@ -19,6 +20,7 @@ private slots:
     void test_drawLine();
     void test_drawLineStress();
     void test_hilbert();
+    void test_wait();
 };
 
 TestSimpleCpp::TestSimpleCpp()
@@ -162,13 +164,28 @@ void TestSimpleCpp::test_hilbert()
     auto parity = 1;
     hilbert(2, order, parity);
 
-    simplecpp::appObj->processEvents(); // Process all pending events
-    QThread::sleep(5);                  // Wait for visual inspection
+    simplecpp::wait(5);     // Wait for 5 seconds
 
     simplecpp::closeTurtleSim();
-
 }
 
+void TestSimpleCpp::test_wait()
+{
+    simplecpp::turtleSim();
+
+    simplecpp::penDown(true);
+    simplecpp::forward(100);
+    simplecpp::left(90);
+    simplecpp::forward(100);
+    simplecpp::left(90);
+    simplecpp::forward(100);
+    simplecpp::left(90);
+    simplecpp::forward(100);
+
+    simplecpp::wait(5);     // Wait for 5 seconds
+
+    simplecpp::closeTurtleSim();
+}
 
 
 QTEST_APPLESS_MAIN(TestSimpleCpp)

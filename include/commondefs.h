@@ -45,6 +45,7 @@ namespace simplecpp {
       void print() const;
     };
 
+    void wait(int seconds);
 }
 
 #endif
