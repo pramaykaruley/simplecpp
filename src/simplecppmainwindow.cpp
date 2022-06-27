@@ -50,16 +50,17 @@ void SimpleCppMainWindow::renderNow()
 
 void SimpleCppMainWindow::render(QPainter *painter)
 {
+    return;
     for (auto &currCmd : pendingCmd)
     {
         QPen pen;
 
         switch(currCmd.type){
         case CmdType::Line:
-            pen.setColor(currCmd.lineCmd.foreColor);
-            pen.setWidth(currCmd.lineCmd.width);
-            painter->setPen(pen);
-            painter->drawLine(currCmd.lineCmd.start, currCmd.lineCmd.end);
+            // pen.setColor(currCmd.lineCmd.foreColor);
+            // pen.setWidth(currCmd.lineCmd.width);
+            // painter->setPen(pen);
+            // painter->drawLine(currCmd.lineCmd.start, currCmd.lineCmd.end);
             break;
         case CmdType::Rect:
             break;
@@ -81,11 +82,8 @@ bool SimpleCppMainWindow::event(QEvent *event)
 
 void SimpleCppMainWindow::drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth)
 {
-    DrawingCommand newDrawingCmd {
-        CmdType::Line,      // For line
-        {
-            {start, end, lineColor, lineWidth}  // LineCmd initialization
-        }
-    };
+    DrawingCommand newDrawingCmd;
+    newDrawingCmd.type = CmdType::Line;
+          
     pendingCmd.push_back(newDrawingCmd);
 }

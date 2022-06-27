@@ -25,12 +25,7 @@ struct RectCmd
 };
 
 struct DrawingCommand {
-    CmdType type;
-    union
-    {
-        LineCmd lineCmd;
-        RectCmd rectCmd;
-    };
+    CmdType type;    
 };
 
 
