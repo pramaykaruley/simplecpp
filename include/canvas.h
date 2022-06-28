@@ -8,20 +8,24 @@
 class Canvas {
     public:
     virtual std::string toString();
+    virtual void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth) = 0;
 };
 
 class TraceCanvas : public Canvas {
     public:
     TraceCanvas() = default;
     std::string toString();
+    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
 };
 
 class QtCanvas : public Canvas {
     std::unique_ptr<QGuiApplication> app;
     std::unique_ptr<SimpleCppMainWindow> win;
+    
     public:
     QtCanvas();
     std::string toString();
+    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
 };
 
 class canvasFactory {

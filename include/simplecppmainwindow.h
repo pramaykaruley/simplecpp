@@ -6,29 +6,6 @@
 typedef QPoint XPoint ;
 typedef QColor Color;
 
-enum struct CmdType {
-    Line, Rect
-};
-
-struct LineCmd
-{
-    XPoint start, end;
-    Color foreColor, backColor;
-    unsigned width;
-};
-
-struct RectCmd
-{
-    XPoint start, end;
-    Color foreColor, backColor;
-    unsigned width;
-};
-
-struct DrawingCommand {
-    CmdType type;    
-};
-
-
 class SimpleCppMainWindow : public QRasterWindow
 {
     Q_OBJECT
@@ -36,7 +13,6 @@ class SimpleCppMainWindow : public QRasterWindow
 public:
     SimpleCppMainWindow(QString title="Simplecpp Window", int width=800, int height=600, QWindow *parent = nullptr);
     ~SimpleCppMainWindow();
-    virtual void render(QPainter *painter);
 
     // Drawing primitives
     void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
@@ -46,7 +22,7 @@ public slots:
 
 private:
      std::unique_ptr<QBackingStore> screenBuffer;
-     std::vector<DrawingCommand> pendingCmd;     // Commands queued for rendering. Commands are cleared after rendering.
+     std::unique_ptr<QImage> offScreenBuffer;     
 
 protected:
     bool event(QEvent *event) override;

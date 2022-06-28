@@ -3,7 +3,8 @@
 using namespace std::string_literals;
 
 std::string QtCanvas::toString() {
-    app->processEvents();
+    // app->processEvents();
+    QGuiApplication::exec();
     return "This is QtCanvas"s;
 }
 
@@ -12,4 +13,8 @@ QtCanvas::QtCanvas() {
     app = std::make_unique<QGuiApplication>(argc, nullptr);
     win = std::make_unique<SimpleCppMainWindow>();
     win->show();    
+}
+
+void QtCanvas::drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth) {
+    win->drawLine(start, end, lineColor, lineWidth);
 }
