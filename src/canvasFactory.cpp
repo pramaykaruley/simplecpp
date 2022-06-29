@@ -8,7 +8,7 @@ std::unique_ptr<Canvas> canvasFactory::makeCanvas(std::string canvasType) {
     }
     else 
     {
-        return std::make_unique<QtCanvas>();
+        return std::make_unique<WindowCanvas>(800, 600);
     }        
 }
     
