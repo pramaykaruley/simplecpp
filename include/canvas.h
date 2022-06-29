@@ -16,7 +16,7 @@ class Canvas : public QRasterWindow{
     virtual std::string toString();
     virtual void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth) = 0;
     
-    static std::unique_ptr<Canvas> createCanvas(std::string fileName = std::string()); 
+    static std::unique_ptr<Canvas> createCanvas(std::string fileName = std::string(), const unsigned width = 800, const unsigned height = 600); 
 };
 
 class TraceCanvas : public Canvas {
@@ -58,4 +58,9 @@ class WindowCanvas : public ImageCanvas{
     private:
     QScopedPointer<QBackingStore> screenBuffer;
 };
+
+namespace simplecpp {
+    void initCanvas(const unsigned width, const unsigned height);
+    void closeCanvas();
+}
 #endif

@@ -3,13 +3,8 @@
 
 int main(int argc, char *argv[])
 {
+    simplecpp::initCanvas(1200, 1600);
     
-    QGuiApplication app(argc, argv);
-
-    auto obj = Canvas::createCanvas();        
-
-    XPoint x(10,10), y(200, 300);
-
-    obj->drawLine(x, y, Color("darkCyan"), 10);
+    simplecpp::closeCanvas();
     return 0;
 }
