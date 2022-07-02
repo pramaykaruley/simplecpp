@@ -1,3 +1,4 @@
+#include <QColor>
 #include <commondefs.h>
 #include <iostream>
 #include <QThread>
@@ -131,7 +132,7 @@ namespace simplecpp{
 
       // Utilities
       void wait(int seconds){
-          simplecpp::appObj->processEvents(); // Process all pending events
+          QGuiApplication::processEvents(); // Process all pending events
           QThread::sleep(seconds);  // Wait for visual inspection
       }
 }

@@ -10,57 +10,37 @@
 typedef QPoint XPoint ;
 typedef QColor Color;
 
-class Canvas : public QRasterWindow{
-    public:
-    virtual ~Canvas() = default;
-    virtual std::string toString();
-    virtual void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth) = 0;
-    
-    static std::unique_ptr<Canvas> createCanvas(std::string fileName = std::string(), const unsigned width = 800, const unsigned height = 600); 
-};
 
-class TraceCanvas : public Canvas {
-    public:
-    TraceCanvas() = default;
-    std::string toString();
-    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
-};
-
-class ImageCanvas : public Canvas {    
-    QString fileName;
-
-    protected:
-    QImage img;
-
-    public:    
-    ImageCanvas(const QString imageFileName, const unsigned width, const unsigned height);
-    virtual ~ImageCanvas();
-    std::string toString();
-    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
-};
-
-class WindowCanvas : public ImageCanvas{
+class Canvas : public QWindow{
     Q_OBJECT
+    QBackingStore offScreenBuffer;
 
-    public:
-    WindowCanvas(const unsigned width, const unsigned height);
-    std::string toString();
-    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
-
-    public slots:    
-    void renderNow();
-
-    protected:
-    bool event(QEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+protected:
     void exposeEvent(QExposeEvent *event) override;
 
-    private:
-    QScopedPointer<QBackingStore> screenBuffer;
+public:
+    Canvas();
+    ~Canvas(); 
+    void drawLine(XPoint start, XPoint end, Color lineColor, unsigned int lineWidth);
+
+public slots:
+    void render(const QRegion &dirtyRegion);
 };
 
 namespace simplecpp {
+    class Sprite;
+
     void initCanvas(const unsigned width, const unsigned height);
     void closeCanvas();
+    int canvas_width();
+    int canvas_height();
+    void addSprite(Sprite *t);
+    void repaint();
+    void removeSprite(Sprite *t);
+    void c_imprint(Sprite* s);
+    void beginFrame();
+    void endFrame();
+    void drawPolygon(XPoint *points, int npoints, Color fill_color, bool fill=true, unsigned int line_width=2, int line_style=1, int cap_style=1, int join_style=1, int fill_rule=1, int function=1);
+    void drawLine(XPoint start, XPoint end, Color line_color, unsigned int line_width);
 }
 #endif

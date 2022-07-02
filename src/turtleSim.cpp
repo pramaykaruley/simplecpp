@@ -3,20 +3,20 @@
 #include <turtleSim.h>
 #include <iostream>
 
-simplecpp::Turtle *_PsystemTurtle_;
+static simplecpp::Turtle theSystemTurtle;
 
-void check(const char* msg){
-  if(!_PsystemTurtle_){
-    std::cout << "You need to call turtleSim before calling "<<msg<<".\n";
-    exit(1);
-  }
+void check(const char*){
+  // if(!_PsystemTurtle_){
+  //   std::cout << "You need to call turtleSim before calling "<<msg<<".\n";
+  //   exit(1);
+  // }
 }
 
 namespace simplecpp{
 
   void turtleSim(const char* name, int w, int h){
-     initCanvas(name,w,h);
-    _PsystemTurtle_= new Turtle;
+     initCanvas(w,h);
+    // _PsystemTurtle_= new Turtle;
   }
 
   void closeTurtleSim(){
@@ -24,20 +24,20 @@ namespace simplecpp{
   }
 
   void resetTurtle(){
-    _PsystemTurtle_->Sprite::reset(canvas_width()/2,canvas_height()/2);
+    theSystemTurtle.Sprite::reset(canvas_width()/2,canvas_height()/2);
   }
 
   void hide(bool state){
-    if(state) _PsystemTurtle_->hide(); 
-    else _PsystemTurtle_->show();
+    if(state) theSystemTurtle.hide(); 
+    else theSystemTurtle.show();
   }
-  void penDown(bool state){check("penDown"); _PsystemTurtle_->penDown(state);}
-  void penUp(bool state){check("penUp"); _PsystemTurtle_->penDown(!state);}
-  void left(double dist){check("left"); _PsystemTurtle_->left(dist);}
+  void penDown(bool state){check("penDown"); theSystemTurtle.penDown(state);}
+  void penUp(bool state){check("penUp"); theSystemTurtle.penDown(!state);}
+  void left(double dist){check("left"); theSystemTurtle.left(dist);}
   void left(int dist){check("left"); left(float(dist));}
-  void right(double dist){check("right"); _PsystemTurtle_->right(dist);}
+  void right(double dist){check("right"); theSystemTurtle.right(dist);}
   void right(int dist){check("right"); right(float(dist));}
-  void forward(double dist){check("forward"); _PsystemTurtle_->forward(dist);}
+  void forward(double dist){check("forward"); theSystemTurtle.forward(dist);}
   void forward(int dist){check("forward"); forward(float(dist));}
 
   double sine(double x){return sin(PI*x/180);}

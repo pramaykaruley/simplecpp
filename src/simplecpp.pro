@@ -10,13 +10,25 @@ CONFIG += debug c++17
 
 SOURCES += \    
     canvas.cpp \
-    tracecanvas.cpp \
-    imagecanvas.cpp \
-    windowcanvas.cpp \    
     main.cpp \
+    turtleSim.cpp \
+    turtle.cpp \
+    sprite.cpp \
+    polygon.cpp \
+    commondefs.cpp \
+    composite.cpp \
+    line.cpp \
 
 HEADERS += \
-    ../include/canvas.h \    
+    ../include/canvas.h \
+    ../include/turtleSim.h \
+    ../include/turtle.h \
+    ../include/sprite.h \
+    ../include/spriteInterface.h \
+    ../include/commondefs.h \
+    ../include/polygon.h \
+    ../include/composite.h \
+    ../include/line.h \
 
 INCLUDEPATH = ../include
 

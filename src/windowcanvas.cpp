@@ -6,13 +6,14 @@ WindowCanvas::WindowCanvas(const unsigned width, const unsigned height)
     : ImageCanvas(QString(), width, height),       
       screenBuffer(new QBackingStore(this)) {
         setGeometry(100, 100, width, height);
-    show();
+    // show();
 
     // Issue: show() raises follow up events only after a certain duration. 
     // Workaround: Wait for events to appear in the event queue
-    QThread::sleep(1);
+    // QThread::sleep(1);
 
-    QGuiApplication::processEvents();
+    // QGuiApplication::processEvents();
+    // QGuiApplication::exec();
 }
 
 std::string WindowCanvas::toString() {
@@ -26,7 +27,7 @@ void WindowCanvas::drawLine(XPoint start, XPoint end, Color lineColor, unsigned 
     QPoint bottomRight(std::max(start.x(), end.x()), std::max(start.y(), end.y()));
 
     update(QRect(topLeft, bottomRight));   // Raise event to redraw screen area containing line
-    QGuiApplication::processEvents();
+    // QGuiApplication::processEvents();
 }
 
 void WindowCanvas::exposeEvent(QExposeEvent *) {
@@ -38,7 +39,7 @@ void WindowCanvas::resizeEvent(QResizeEvent *resizeEvent) {
 }
 
 void WindowCanvas::renderNow() {
-    // qDebug() << "renderNow called";
+    qDebug() << "renderNow called";
 
     if (!isExposed())
         return;
@@ -58,7 +59,7 @@ void WindowCanvas::renderNow() {
 }
 
 bool WindowCanvas::event(QEvent *event) {
-    // qDebug() << "Event received: " << event->type();
+    qDebug() << "Event received: " << event->type();
 
     if (event->type() == QEvent::UpdateRequest) {
         renderNow();

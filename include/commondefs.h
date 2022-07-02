@@ -7,6 +7,7 @@
 
 #define PI M_PI
 typedef QPoint XPoint;
+typedef QColor Color;
 
 namespace simplecpp {
 
