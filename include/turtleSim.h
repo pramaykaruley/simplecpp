@@ -17,7 +17,7 @@ namespace simplecpp{
   double arccosine(double x);
   double arctangent(double x);
   double arctangent2(double y, double x);
-
+  void wait(unsigned long mSec);
 
   void left(double dist);
   void right(double dist);

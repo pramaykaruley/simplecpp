@@ -1,16 +1,15 @@
 #include<iostream>
-#include <canvas.h>
 #include <turtleSim.h>
 
 using namespace simplecpp;
 
-int main(int argc, char **argv) {
+int main(int, char **) {
     unsigned nSteps {0};
 
     std::cout << "Enter number of steps: ";
     std::cin >> nSteps;
 
-    for(int stepIdx = 0; stepIdx < nSteps; stepIdx ++) {
+    for(auto stepIdx {0u}; stepIdx < nSteps; stepIdx ++) {
         auto action = rand() % 5;
 
         switch (action)
@@ -25,10 +24,7 @@ int main(int argc, char **argv) {
             forward(20);
             break;
         }
-        QThread::msleep(50);
+        wait(50);   // Wait for 50 milliseconds
     }
-
-    //std::cout << "Close the window to exit.\n";
-    //QGuiApplication::exec();
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <canvas.h>
 #include <sprite.h>
+#include <turtle.h>
 
 namespace simplecpp{
 
@@ -11,6 +12,7 @@ static int argc = 1;
 static char *appName = "Simplecpp";
 static QGuiApplication theApp(argc, &appName);
 static Canvas theCanvas;
+static Turtle theSystemTurtleObj;
 
 static QRect calculateCanvasSize() {
     auto rect = theApp.primaryScreen()->availableGeometry();
@@ -22,6 +24,10 @@ static QRect calculateCanvasSize() {
     }
 
     void closeCanvas() {        
+    }
+
+    Turtle& theSystemTurtle() {
+        return theSystemTurtleObj;
     }
 
     int canvas_width() {

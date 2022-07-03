@@ -29,9 +29,11 @@ public slots:
 
 namespace simplecpp {
     class Sprite;
+    class Turtle;
 
     void initCanvas(const unsigned width, const unsigned height);
     void closeCanvas();
+    Turtle& theSystemTurtle();
     int canvas_width();
     int canvas_height();
     void addSprite(Sprite *t);
