@@ -4,13 +4,6 @@
 #include <iostream>
 #include <QThread>
 
-void check(const char*){
-  // if(!_PsystemTurtle_){
-  //   std::cout << "You need to call turtleSim before calling "<<msg<<".\n";
-  //   exit(1);
-  // }
-}
-
 namespace simplecpp{
 
   void turtleSim(const char* name, int w, int h){
@@ -30,14 +23,14 @@ namespace simplecpp{
     if(state) theSystemTurtle().hide();
     else theSystemTurtle().show();
   }
-  void penDown(bool state){check("penDown"); theSystemTurtle().penDown(state);}
-  void penUp(bool state){check("penUp"); theSystemTurtle().penDown(!state);}
-  void left(double dist){check("left"); theSystemTurtle().left(dist);}
-  void left(int dist){check("left"); left(float(dist));}
-  void right(double dist){check("right"); theSystemTurtle().right(dist);}
-  void right(int dist){check("right"); right(float(dist));}
-  void forward(double dist){check("forward"); theSystemTurtle().forward(dist);}
-  void forward(int dist){check("forward"); forward(float(dist));}
+  void penDown(bool state){theSystemTurtle().penDown(state);}
+  void penUp(bool state){theSystemTurtle().penDown(!state);}
+  void left(double dist){theSystemTurtle().left(dist);}
+  void left(int dist){left(float(dist));}
+  void right(double dist){theSystemTurtle().right(dist);}
+  void right(int dist){right(float(dist));}
+  void forward(double dist){theSystemTurtle().forward(dist);}
+  void forward(int dist){forward(float(dist));}
 
   double sine(double x){return sin(PI*x/180);}
   double cosine(double x){return cos(PI*x/180);}
